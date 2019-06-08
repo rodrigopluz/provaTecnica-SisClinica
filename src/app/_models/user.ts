@@ -1,8 +1,14 @@
 ﻿export class User {
-    id: number;
-    username: string;
-    password: string;
-    firstName: string;
-    lastName: string;
+    // id: number;
+    // login: string;
+    // senha: string;
+    // firstName: string;
+    // lastName: string;
+    // token: string;
+
+    administrador: true;
+    autenticado: true;
+    login: string;
+    nome: string;
     token: string;
 }

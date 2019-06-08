@@ -41,8 +41,8 @@ export class FakeBackendInterceptor implements HttpInterceptor {
         function register() {
             const user = body
 
-            if (users.find(x => x.username === user.username)) {
-                return error('Username "' + user.username + '" is already taken')
+            if (users.find(x => x.login === user.login)) {
+                return error('Login "' + user.login + '" is already taken')
             }
 
             user.id = users.length ? Math.max(...users.map(x => x.id)) + 1 : 1;
@@ -53,12 +53,12 @@ export class FakeBackendInterceptor implements HttpInterceptor {
         }
 
         function authenticate() {
-            const { username, password } = body;
-            const user = users.find(x => x.username === username && x.password === password);
-            if (!user) return error('Username or password is incorrect');
+            const { login, senha } = body;
+            const user = users.find(x => x.login === login && x.senha === senha);
+            if (!user) return error('Login ou Senha estão incorretos');
             return ok({
                 id: user.id,
-                username: user.username,
+                login: user.login,
                 firstName: user.firstName,
                 lastName: user.lastName,
                 token: 'fake-jwt-token'
