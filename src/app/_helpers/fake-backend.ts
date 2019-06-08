@@ -42,7 +42,7 @@ export class FakeBackendInterceptor implements HttpInterceptor {
             const user = body
 
             if (users.find(x => x.username === user.username)) {
-                return error('Username "' + user.username + '" is already taken')
+                return error('Login "' + user.username + '" is already taken')
             }
 
             user.id = users.length ? Math.max(...users.map(x => x.id)) + 1 : 1;
@@ -55,7 +55,7 @@ export class FakeBackendInterceptor implements HttpInterceptor {
         function authenticate() {
             const { username, password } = body;
             const user = users.find(x => x.username === username && x.password === password);
-            if (!user) return error('Username or password is incorrect');
+            if (!user) return error('Login ou Senha estão incorretos');
             return ok({
                 id: user.id,
                 username: user.username,
